@@ -1,17 +1,15 @@
-import libs.utils
-
-from models.home import HomePage
-from models.signup import SignupPage
-
 class UsersFacade:
-    def __init__(self, page):
+    def init(self, page):
         self.page = page
 
     def login_as_new_user(self):
-        # Complete code
-        # generate username
-        # navigate to signup
-        # create new user
-        # navigate to login
-        # login as new user
-        # return username and password
+        username = libs.utils.generate_string_with_prefix(prefix="user")
+        password = "pass123"
+        home = HomePage(self.page)
+        home.navigate()
+        home.go_to_signup()
+        signup = SignupPage(self.page)
+        signup.signup(username, password)
+        signup.go_to_home()
+        home.login(username, password)
+        return username, password 

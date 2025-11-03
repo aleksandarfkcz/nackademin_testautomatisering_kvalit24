@@ -1,5 +1,3 @@
-# Page where the users could either create a new user or
-# navigate to Home
 class SignupPage:
     def __init__(self, page):
         self.page = page
@@ -8,12 +6,12 @@ class SignupPage:
         self.signup_input_password = page.get_by_placeholder('Password')
         self.signup_btn_signup = page.locator('button.button-primary')
         self.signup_btn_login = page.locator('button.btn-blue')
-
-
+    # Fill sign up field and klick sign up button
     def signup(self,username,password):
         self.signup_input_username.fill(username)
         self.signup_input_password.fill(password)
         self.signup_btn_signup.click()
 
     def go_to_home(self):
-        # complete code
+        self.signup_btn_login.click()
+        self.page.get_by_placeholder('Username').wait_for(state='visible')       
